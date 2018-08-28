@@ -1,18 +1,14 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import SearchBar from "./components/SearchBar"
+import ReactDOM from 'react-dom';
+import App from './containers/App';
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
 
-class App extends React.Component {
-    handleTermChange(term) {
-        console.log(term);
-    }
-    render() {
-        return (
-            <div>
-                <SearchBar onTermChange={this.handleTermChange} />
-            </div>
-        )
-    }
-}
+const store = configureStore();
 
-ReactDom.render(<App />, document.getElementById('app'));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app')
+);
